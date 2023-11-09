@@ -1295,6 +1295,10 @@ MonoBehaviour:
     prefab: {fileID: -5958172188866374393, guid: 8aa5a16d287ba7b41b359b4dc4552b05, type: 3}
     amount: 1
     collect: 0
+  - root: {fileID: 958228843}
+    prefab: {fileID: 3496428340089444861, guid: fbc32d71df5569345a627cc7eeb73853, type: 3}
+    amount: 1
+    collect: 0
   Particle: []
 --- !u!4 &1894017059
 Transform:
@@ -1431,7 +1435,7 @@ MonoBehaviour:
   startPoint: {fileID: 183307116}
   endPoint: {fileID: 9180095287150552382}
   playerTransform: {x: 0, y: 0, z: 0}
-  evnMoveSpeed: 12
+  evnMoveSpeed: 13
   buildingSpawnPoints:
   - {fileID: 1817174375892952223}
   - {fileID: 7654115626853925568}
@@ -1441,7 +1445,6 @@ MonoBehaviour:
   - {fileID: 8280903141372905496}
   coin: {fileID: 2624084537450406142, guid: 57f52f8ae7116b6418a689e6a78263af, type: 3}
   train: {fileID: 8572532596126184135, guid: cffcfc55582454d4b99e8576a8c1dc00, type: 3}
-  trashcan: {fileID: 5243115875542763297, guid: 3fe9f092e5a5ad24cb2356a6bb2e16f4, type: 3}
   player: {fileID: 4189467493387523600, guid: 62092b8fc182273429e2ebd4f0c281c5, type: 3}
 --- !u!4 &7654115626853925568
 Transform:
@@ -1528,7 +1531,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4482603081755851621}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -24,11 +24,9 @@ public class LevelManager : Singleton<LevelManager>
 
     [SerializeField] private Coin coin;
     [SerializeField] private Train train;
-    [SerializeField] private Trashcan trashcan;
     [SerializeField] private Player player;
 
-    public delegate void Speedup();
-    public event Speedup speed;
+    float hightSpeed = 20f;
 
 
 
@@ -41,7 +39,7 @@ public class LevelManager : Singleton<LevelManager>
         PoolType.Threat_CarRoad_Block,
     };
 
-
+    private bool isIncreseSpeed = false;
     private Vector3 moveDirection;
 
     public Vector3 MoveDirection { get => moveDirection;}
@@ -57,9 +55,43 @@ public class LevelManager : Singleton<LevelManager>
         
     }
 
+    private void Update() 
+    {
+        if(player.Coin < 100 || isIncreseSpeed)
+            return;
+        
+        CheckScore();
+        
+    }
+
     public Transform GetPlayer()
     {
         return player.transform;
+    }
+
+    private void CheckScore()
+    {
+        if(player.Coin > 100 && player.Coin < 200)
+        {
+            evnMoveSpeed = 14;
+            hightSpeed = 21;
+            
+        }
+        else if(player.Coin > 200 && player.Coin < 300)
+        {
+            evnMoveSpeed = 15;
+            hightSpeed = 22;
+        }
+        else if(player.Coin > 300 && player.Coin < 500)
+        {
+            evnMoveSpeed = 16;
+            hightSpeed = 23;
+        }
+        else if(player.Coin > 500)
+        {
+            evnMoveSpeed = 17;
+            hightSpeed = 24;
+        }
     }
 
 
@@ -93,9 +125,19 @@ public class LevelManager : Singleton<LevelManager>
         StartCoroutine(SpawnThreatCoroutine());
         StartCoroutine(SpawnCoinCoroutine());
         StartCoroutine(SpawnTrainCoroutine());
-
+        StartCoroutine(SpawnSpeedUpCoroutine());
     }
 
+    IEnumerator SpawnSpeedUpCoroutine()
+    {
+        SpeedUp newSpeedUp = null;
+        while(GameManager.Instance.IsState(GameState.Gameplay))
+        {
+            newSpeedUp = SimplePool.Spawn<SpeedUp>(PoolType.SpeedUp, SpawnRandomPoint(), Quaternion.identity);
+            SetDataObject(newSpeedUp);
+            yield return new WaitForSeconds(newSpeedUp.SpawnInternalCoin);
+        }
+    }
 
     IEnumerator SpawnThreatCoroutine( )
     {
@@ -147,8 +189,9 @@ public class LevelManager : Singleton<LevelManager>
         while(GameManager.Instance.IsState(GameState.Gameplay))
         {
             newTrain =  train.SpawnTrain(SpawnRandomPoint(), MoveDirection, endPoint, EvnMoveSpeed);
-            newTrashcan = trashcan.SpawnTrashcan(SpawnRandomPoint(), MoveDirection, endPoint, EvnMoveSpeed);
-            yield return new WaitForSeconds(train.SpawnInternal);
+            newTrashcan = SimplePool.Spawn<Trashcan>(PoolType.Trashcan, SpawnRandomPoint() , Quaternion.identity);
+            SetDataObject(newTrashcan);
+            yield return new WaitForSeconds(newTrain.SpawnInternal);
         }
     }
 
@@ -205,8 +248,7 @@ public class LevelManager : Singleton<LevelManager>
     {
         if(@object != null)
         {
-            @object.SetMoveSpeed(EvnMoveSpeed);
-            Debug.Log(EvnMoveSpeed);
+            //@object.SetMoveSpeed(EvnMoveSpeed);
             @object.SetDestination(endPoint.position);
             @object.SetMoveDir(MoveDirection);
         }
@@ -269,6 +311,19 @@ public class LevelManager : Singleton<LevelManager>
         DespawnAllObject();
         
         UIManager.Instance.OpenUI<Victory>().ActiveButtonAfterTime();
+    }
+
+    public void InscreaseEvnSpeed()
+    {
+        isIncreseSpeed = true;
+        evnMoveSpeed = hightSpeed;
+        Invoke(nameof(ResetEvnSpeed), 2f);
+    }
+
+    public void ResetEvnSpeed()
+    {
+        isIncreseSpeed = false;
+        evnMoveSpeed = 13f;
     }
 
 

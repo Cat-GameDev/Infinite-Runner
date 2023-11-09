@@ -10,6 +10,7 @@ public class MovementObject : GameUnit
 
     private void Update() 
     {
+        moveSpeed = LevelManager.Instance.EvnMoveSpeed;
         transform.position += moveDir * moveSpeed * Time.deltaTime;
         if(!GameManager.Instance.IsState(GameState.Gameplay))
         {

@@ -225,6 +225,12 @@ public class Player : GameUnit
             }
         } 
 
+        if(other.CompareTag("SpeedUp"))
+        {
+            LevelManager.Instance.InscreaseEvnSpeed();
+            other.gameObject.GetComponent<SpeedUp>().OnDespawn();
+        }
+
     }
 
 
