@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1186189fd24b82048aa02c96bf4cf969, type: 3}
+  m_Name: Color Data
+  m_EditorClassIdentifier: 
+  meshCars:
+  - {fileID: -5789376610274703872, guid: 866cd91a1c33e374e9476ed084403d1c, type: 3}
+  - {fileID: 6422468085075444546, guid: 4fdf0c3c00751d94ea3df354a594727a, type: 3}
+  meshBuidings:
+  - {fileID: -7772942729191614732, guid: daaaa443fa7fd9b4fade9d650cfebc0b, type: 3}
+  - {fileID: -2724878369372592269, guid: 35ac9ee6af4a38548a4f1ba5d520c7a6, type: 3}
+  - {fileID: 7001357108112601752, guid: 20d2a90d0734c494290c07daf0395da8, type: 3}
+  - {fileID: -5741718672358307179, guid: 0b1697fb8c3993f4f83fa1619ed06cc4, type: 3}
+  meshTrains:
+  - {fileID: 4751414987417736689, guid: 97fe0316c90640e47bb87af4eb63b094, type: 3}
+  - {fileID: -8948614274438997888, guid: 792330222d23adc47817a5d2dbebe0c6, type: 3}
