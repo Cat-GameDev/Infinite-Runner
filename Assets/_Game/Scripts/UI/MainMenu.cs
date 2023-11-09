@@ -110,11 +110,13 @@ public class MainMenu : UICanvas
         SaveDataManager.SavePlayerProfile(newPlayerName);
         DeactiveProfileMenuPanel();
         UpPlayerProfile();
+        namePlayer_InputField.text = null;
     }
 
     public void CanelButton()
     {
         DeactiveProfileMenuPanel(); 
+        namePlayer_InputField.text = null;
     }
 
     private void SetActiveProfileMenuPanel()
